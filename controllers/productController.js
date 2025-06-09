@@ -1,4 +1,4 @@
-const db = require('../models');
+const db = require("../models");
 const Product = db.Product;
 
 exports.getAllProducts = async (req, res) => {
@@ -13,7 +13,7 @@ exports.getAllProducts = async (req, res) => {
 exports.getProductById = async (req, res) => {
   try {
     const product = await Product.findByPk(req.params.id);
-    if (!product) return res.status(404).json({ message: 'Product not found' });
+    if (!product) return res.status(404).json({ message: "Product not found" });
     res.json(product);
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -34,7 +34,7 @@ exports.updateProduct = async (req, res) => {
   try {
     const { name, price, stock, category } = req.body;
     const product = await Product.findByPk(req.params.id);
-    if (!product) return res.status(404).json({ message: 'Product not found' });
+    if (!product) return res.status(404).json({ message: "Product not found" });
 
     await product.update({ name, price, stock, category });
     res.json(product);
@@ -46,10 +46,10 @@ exports.updateProduct = async (req, res) => {
 exports.deleteProduct = async (req, res) => {
   try {
     const product = await Product.findByPk(req.params.id);
-    if (!product) return res.status(404).json({ message: 'Product not found' });
+    if (!product) return res.status(404).json({ message: "Product not found" });
 
     await product.destroy();
-    res.json({ message: 'Product deleted' });
+    res.json({ message: "Product deleted" });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }

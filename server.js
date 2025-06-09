@@ -14,12 +14,12 @@ app.get("/", (req, res) => {
 });
 
 // Sync DB
-db.sequelise
-  .sync({ aIter: true }) // alter agar update struktur model ke DB
+db.sequelize
+  .sync({ alter: true }) // alter agar update struktur model ke DB
   .then(() => {
     console.log("Database connected & synchronized");
     app.listen(PORT, () =>
-      console.log(`Server running on httpss://localhost:${PORT}`)
+      console.log(`Server running on http://localhost:${PORT}`)
     );
   })
   .catch((err) => console.error("Failed to sync db:", err));
@@ -29,3 +29,5 @@ app.use("/api/products", productRoutes);
 
 const userRoutes = require("./routes/userRoutes");
 app.use("/api/users", userRoutes);
+
+
